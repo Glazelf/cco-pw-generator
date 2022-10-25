@@ -6,7 +6,14 @@ async function pwGenerator() {
     if (isRemote) jsonPath = '../../mnt/volume-ams3-01/storage.json';
     // If JSON doesn't exist: create
     console.log(fs.existsSync(jsonPath))
-    if (!fs.existsSync(jsonPath)) fs.writeFile(jsonPath, JSON.stringify({}), 'utf8', function (err) { if (err) return console.log(err); });
+    if (!fs.existsSync(jsonPath)) fs.writeFile(jsonPath, JSON.stringify({}), 'utf8', (err) => {
+        if (err) {
+            return console.log(err);
+        } else {
+            return console.log(`Created JSON file at ${jsonPath}`);
+        };
+    });
+    console.log(fs.existsSync(jsonPath));
     let existingPWs = require(jsonPath);
     // Starting variables
     console.log("Generating random alphanumeric string...");
@@ -18,7 +25,7 @@ async function pwGenerator() {
     existingPWs[Date.now()] = pwReturn;
     fs.writeFile(jsonPath, JSON.stringify(existingPWs), 'utf8', function (err) { if (err) return console.log(err); });
     // Return password
-    return console.log("Password:\n" + pwReturn);
+    return console.log(`Password:\n${pwReturn}`);
     // Password generation function
     function generatePW() {
         let pw = "";
