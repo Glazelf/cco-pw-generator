@@ -8,9 +8,8 @@ async function pwGenerator() {
     if (isRemote) jsonPath = path.resolve(__dirname, '../../mnt/volume-ams3-01/storage.json');
     let existingPWs = {};
     if (fs.existsSync(jsonPath)) existingPWs = require(jsonPath);
-    // Starting variables
-    console.log("Generating random alphanumeric string...");
     // Generate password
+    console.log("Generating random alphanumeric string...");
     let pwReturn = generatePW();
     // Loop untill unique password is generated
     if (Object.keys(existingPWs).length > 0) while (Object.entries(existingPWs).includes(pwReturn)) pwReturn = generatePW();
