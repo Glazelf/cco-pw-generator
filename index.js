@@ -6,7 +6,7 @@ async function pwGenerator() {
     if (isRemote) jsonPath = '../../mnt/volume-ams3-01/storage.json';
     // If JSON doesn't exist: create
     console.log(fs.existsSync(jsonPath))
-    if (!fs.existsSync(jsonPath)) fs.writeFile(jsonPath, JSON.stringify({}), 'utf8', (err) => {
+    if (!fs.existsSync(jsonPath)) await fs.writeFile(jsonPath, JSON.stringify({}), 'utf8', (err) => {
         if (err) {
             return console.log(err);
         } else {
