@@ -5,7 +5,7 @@ async function pwGenerator() {
     let isRemote = true; // Set to false for local path
     // Resolve paths
     let jsonPath = path.resolve(__dirname, './mnt/volume-ams3-01/storage.json');
-    if (isRemote) jsonPath = path.resolve(__dirname, '../../mnt/volume-ams3-01/storage.json');
+    if (isRemote) jsonPath = path.resolve(__dirname, '../mnt/volume-ams3-01/storage.json');
     console.log(jsonPath)
     // If JSON doesn't exist: create
     console.log(fs.existsSync(jsonPath))
