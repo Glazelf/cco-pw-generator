@@ -5,8 +5,8 @@ async function pwGenerator() {
     let jsonPath = './mnt/volume-ams3-01/storage.json';
     if (isRemote) jsonPath = '../../mnt/volume-ams3-01/storage.json';
     // If JSON doesn't exist: create
-    let jsonExists = await fs.existsSync(jsonPath);
-    if (!jsonExists) fs.writeFile(jsonPath, JSON.stringify({}), 'utf8', function (err) { if (err) return console.log(err); });
+    console.log(fs.existsSync(jsonPath))
+    if (!fs.existsSync(jsonPath)) fs.writeFile(jsonPath, JSON.stringify({}), 'utf8', function (err) { if (err) return console.log(err); });
     let existingPWs = require(jsonPath);
     // Starting variables
     console.log("Generating random alphanumeric string...");
