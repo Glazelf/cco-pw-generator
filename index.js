@@ -2,8 +2,9 @@ async function pwGenerator() {
     // Imports
     let fs = require('fs');
     let isRemote = true; // Set to false for local path
-    let jsonPath = './mnt/volume-ams3-01/storage.json';
-    if (isRemote) jsonPath = '../../mnt/volume-ams3-01/storage.json';
+    let jsonPath = __dirname + '/mnt/volume-ams3-01/storage.json';
+    if (isRemote) jsonPath = __dirname + '/../../mnt/volume-ams3-01/storage.json';
+    console.log(jsonPath)
     // If JSON doesn't exist: create
     console.log(fs.existsSync(jsonPath))
     if (!fs.existsSync(jsonPath)) await fs.writeFile(jsonPath, JSON.stringify({}), 'utf8', (err) => {
